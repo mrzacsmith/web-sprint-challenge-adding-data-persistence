@@ -14,27 +14,25 @@ In this project you will be given a set of requirements and must design a databa
 
 ### Entities
 
-A `project` is what needs to be done. We want to store the following data about a `project`:
+A **project** is what needs to be done and is stored in a `projects` table. We want to store the following data about a project:
 
-- [ ] `id` - a unique ID.
-- [ ] `name` - this column is required.
-- [ ] `description` - optional.
-- [ ] `completed` - a boolean that indicates if the project has been completed. This column cannot be `NULL`, the default value should be `false`.
+- [ ] `id` - unique
+- [ ] `name` - required
+- [ ] `description` - optional
+- [ ] `completed` - cannot be `NULL` and has a default value of `false`
 
-A `resource` is anything needed to complete a project, some examples are: a person, a tool, a meeting room or a software license. We want to store the following data about a `resource`:
+A **resource** is anything needed to complete a project and is stored in a `resources` table. We want to store the following data about a resource:
 
-- [ ] `id` - a unique ID.
-- [ ] `name` - this column is required.
-- [ ] `description` - optional.
+- [ ] `id` - unique
+- [ ] `name` - required and unique
+- [ ] `description` - optional
 
-The database should not allow resources with duplicate names.
+A **task** is one of the steps needed to complete a project and is stored in a `tasks` table. We want to store the following data about a task:
 
-A `task` is one of the steps needed to complete the project. We want to store the following data about an `task`.
-
-- [ ] `id` - a unique ID.
-- [ ] `description`  - of what needs to be done. This column is required.
-- [ ] `notes` - optional, to add additional information.
-- [ ] `completed` - a boolean that indicates if the task has been completed. This column cannot be `NULL`, the default value should be `false`.
+- [ ] `id` - unique
+- [ ] `description` - required
+- [ ] `notes` - optional
+- [ ] `completed` - cannot be `NULL` and has a default value of `false`
 
 ### Commits
 
@@ -66,10 +64,10 @@ Your finished project must include all of the following requirements:
 - [ ] Design the data model and use _knex migrations_ to create the database and tables needed to satisfy the following business rules:
   - [ ] a `project` can have multiple `tasks`.
   - [ ] a `task` belongs to only one `project`.
-  - [ ] a `project` can use multiple `resources`. Example of `resources` are: computer, conference room, microphone, delivery van.
+  - [ ] a `project` can use multiple `resources`. Examples of `resources` are: computer, conference room, microphone, delivery van.
   - [ ] the same `resource` can be used in multiple `projects`.
   - [ ] when adding `projects` the client must provide a name, the description is optional.
-  - [ ] when adding `resources` the client must provide a name, the description is optional.
+  - [ ] when adding `resources` the client must provide a unique name, the description is optional.
   - [ ] when adding a `task` the client must provide a description, the notes are optional.
   - [ ] when adding a `task` the client must provide the `id` of an existing project.
   - [ ] for `projects` and `tasks` if no value is provided for the `completed` property, the API should provide a default value of `false`.
@@ -79,7 +77,7 @@ Your finished project must include all of the following requirements:
   - [ ] adding projects.
   - [ ] retrieving a list of projects.
   - [ ] adding tasks.
-  - [ ] retrieving a list of tasks. **Each task should include the project name and project description**.
+  - [ ] retrieving a list of tasks. **Each task should include project name and project description**.
 
 In your solution, it is essential that you follow best practices and produce clean and professional results. Schedule time to review, refine, and assess your work and perform basic professional polishing including spell-checking and grammar-checking on your work. It is better to submit a challenge that meets MVP than one that attempts too much and does not.
 

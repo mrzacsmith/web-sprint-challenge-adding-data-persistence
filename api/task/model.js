@@ -23,5 +23,6 @@ function get() {
 function insert(task) {
   return db("tasks")
     .insert(task, "id")
-    .then(([id]) => db("tasks").where({ id }).first());
+    .then(([id]) => db("tasks").where({ id }))
+    .then(([task]) => ({ ...task, completed: task.completed ? true : false }));
 }
