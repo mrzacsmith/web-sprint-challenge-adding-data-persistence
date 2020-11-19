@@ -42,9 +42,9 @@ Commit your code regularly and meaningfully.
 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
-1. Explain the difference between `Relational Databases` and `SQL`.
-2. Why do tables need a `primary key`?
-3. What is the name given to a table column that references the primary key on another table?
+1. Explain the difference between Relational Databases and SQL.
+2. Why do tables need a Primary Key?
+3. What is the name given to a table column that references the Primary Key on another table?
 4. What do we need in order to have a _many to many_ relationship between two tables?
 
 ## Instructions
@@ -72,12 +72,12 @@ Your finished project must include all of the following requirements:
   - [ ] when adding a `task` the client must provide the `id` of an existing project.
   - [ ] for `projects` and `tasks` if no value is provided for the `completed` property, the API should provide a default value of `false`.
 - [ ] Build an API with endpoints for:
-  - [ ] adding resources.
-  - [ ] retrieving a list of resources.
-  - [ ] adding projects.
-  - [ ] retrieving a list of projects.
-  - [ ] adding tasks.
-  - [ ] retrieving a list of tasks. **Each task should include project name and project description**.
+  1. adding a new resource - `[POST] /api/resources`
+  1. retrieving all resources - `[GET] /api/resources`
+  1. adding a new project - `[POST] /api/projects`
+  1. retrieving all projects - `[GET] /api/projects`
+  1. adding a new task - `[POST] /api/tasks`
+  1. retrieving all tasks - `[GET] /api/tasks` **Each task should include project name and project description**
 
 In your solution, it is essential that you follow best practices and produce clean and professional results. Schedule time to review, refine, and assess your work and perform basic professional polishing including spell-checking and grammar-checking on your work. It is better to submit a challenge that meets MVP than one that attempts too much and does not.
 
