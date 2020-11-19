@@ -7,8 +7,8 @@ module.exports = {
 
 function get() {
   return db("projects")
-    .then(pr => pr.map(pr =>
-      ({ ...pr, completed: pr.completed ? true : false })
+    .then(projects => projects.map(proj =>
+      ({ ...proj, completed: proj.completed ? true : false })
     ));
 }
 
