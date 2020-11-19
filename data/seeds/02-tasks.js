@@ -1,14 +1,14 @@
 exports.seed = function (knex) {
-  return knex('actions').insert([
+  return knex('tasks').insert([
     {
       project_id: 1,
       description: 'Fork and Clone Repository',
-      notes: 'Repo URL: https://github.com/LambdaSchool/node-api-challenge',
+      notes: 'This is fine',
     },
     {
       project_id: 1,
       description: 'Install Dependencies',
-      notes: 'Remember to cd into the folder where the Project was cloned',
+      notes: 'This is awesome',
     },
     {
       project_id: 1,
