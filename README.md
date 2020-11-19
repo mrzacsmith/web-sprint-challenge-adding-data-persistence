@@ -45,12 +45,9 @@ Commit your code regularly and meaningfully.
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Explain the difference between `Relational Databases` and `SQL`.
-
 2. Why do tables need a `primary key`?
-
-3. What is the name given to a table column that references the primary key on another table.
-
-4. What do we need in order to have a _many to many_ relationship between two tables.
+3. What is the name given to a table column that references the primary key on another table?
+4. What do we need in order to have a _many to many_ relationship between two tables?
 
 ## Instructions
 
@@ -82,7 +79,7 @@ Your finished project must include all of the following requirements:
   - [ ] adding projects.
   - [ ] retrieving a list of projects.
   - [ ] adding tasks.
-  - [ ] retrieving a list of tasks by project id. **The list of tasks should include the project name and project description**.
+  - [ ] retrieving a list of tasks. **Each task should include the project name and project description**.
 
 In your solution, it is essential that you follow best practices and produce clean and professional results. Schedule time to review, refine, and assess your work and perform basic professional polishing including spell-checking and grammar-checking on your work. It is better to submit a challenge that meets MVP than one that attempts too much and does not.
 
@@ -93,7 +90,6 @@ After finishing your required elements, you can push your work further. These go
 - [ ] Add an endpoint to get a list of project resources.
 - [ ] Add an endpoint to get a list of project tasks.
 - [ ] Add an endpoint to see all projects using a particular resource.
-- [ ] Add support for assigning `resources` directly to `tasks` in addition to adding them to `projects`
 
 ## Submission format
 
