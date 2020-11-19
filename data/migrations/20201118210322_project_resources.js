@@ -1,3 +1,4 @@
+// needed for stretch, not MVP
 exports.up = function (knex) {
   return knex.schema.createTable("project_resources", function (pr) {
     pr.increments();
