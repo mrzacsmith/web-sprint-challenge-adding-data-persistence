@@ -3,9 +3,6 @@
 const request = require('supertest')
 const server = require('./api/server')
 const db = require('./data/dbConfig')
-const Project = require('./api/project/model')
-const Resource = require('./api/resource/model')
-const Task = require('./api/task/model')
 
 const projectA = { name: 'Web API', description: 'Build APIs' }
 const projectB = { name: 'Databases', description: 'Learn SQL', completed: true }
@@ -34,34 +31,45 @@ describe('server.js', () => {
       await db('projects').insert({ ...projectB, completed: 1 })
     })
     describe('[GET] /api/projects', () => {
-      it('can get all projects', async () => {
+      it('can get all projects that exist in the table', async () => {
         const res = await request(server).get('/api/projects')
         expect(res.body).toHaveLength(2)
       })
-      it('each project contains name and description, and the completed as a boolean', async () => {
+      it('each project contains name, description and completed (as a boolean)', async () => {
         const res = await request(server).get('/api/projects')
         expect(res.body[0]).toMatchObject({ ...projectA, completed: false })
         expect(res.body[1]).toMatchObject(projectB)
       })
     })
     describe('[POST] /api/projects', async () => {
-      it('can add a new project to the db', async () => {
+      it('can add a new project to the table', async () => {
         await db('projects').truncate()
         await request(server).post('/api/projects').send(projectA)
         await request(server).post('/api/projects').send(projectB)
         await request(server).post('/api/projects').send(projectC)
         const projects = await db('projects')
         expect(projects).toHaveLength(3)
-        expect(projects[0]).toMatchObject({ ...projectA, completed: 0 })
-        expect(projects[1]).toMatchObject({ ...projectB, completed: 1 })
-        expect(projects[2]).toMatchObject({ ...projectC, description: null, completed: 0 })
+        expect(projects[0]).toMatchObject(projectA)
+        expect(projects[1]).toMatchObject({ name: 'Databases', description: 'Learn SQL' })
+        expect(projects[2]).toMatchObject({ ...projectC, description: null })
       })
-      it('responds with the newly created project', async () => {
+      it('can add the project to the table with its completed as an integer', async () => {
+        await db('projects').truncate()
+        await request(server).post('/api/projects').send(projectA)
+        await request(server).post('/api/projects').send(projectB)
+        await request(server).post('/api/projects').send(projectC)
+        const projects = await db('projects')
+        expect(projects).toHaveLength(3)
+        expect(projects[0]).toMatchObject({ completed: 0 })
+        expect(projects[1]).toMatchObject({ completed: 1 })
+        expect(projects[2]).toMatchObject({ completed: 0 })
+      })
+      it('responds with the newly created project with its completed as a boolean', async () => {
         await db('projects').truncate()
         const res = await request(server).post('/api/projects').send(projectA)
         expect(res.body).toMatchObject({ ...projectA, completed: false })
       })
-      it('rejects projects lacking a description with an error status code', async () => {
+      it('rejects projects lacking a name with an error status code', async () => {
         await db('projects').truncate()
         const res = await request(server).post('/api/projects').send({})
         const projects = await db('projects')
@@ -78,7 +86,7 @@ describe('server.js', () => {
       await db('resources').insert(resourceB)
     })
     describe('[GET] /api/resources', () => {
-      it('can get all resources', async () => {
+      it('can get all resources in the table', async () => {
         const res = await request(server).get('/api/resources')
         expect(res.body).toHaveLength(2)
         expect(res.body[0]).toMatchObject(resourceA)
@@ -86,7 +94,7 @@ describe('server.js', () => {
       })
     })
     describe('[POST] /api/resources', () => {
-      it('can add a new resource to the db', async () => {
+      it('can add a new resource to the table', async () => {
         await db('resources').truncate()
         await request(server).post('/api/resources').send(resourceA)
         await request(server).post('/api/resources').send(resourceB)
@@ -120,11 +128,11 @@ describe('server.js', () => {
       await db('tasks').insert({ ...taskC, completed: 1 })
     })
     describe('[GET] /api/tasks', () => {
-      it('can get all tasks', async () => {
+      it('can get all tasks in the table', async () => {
         const res = await request(server).get('/api/tasks')
         expect(res.body).toHaveLength(3)
       })
-      it('each task contains notes and description, and the completed as a boolean', async () => {
+      it('each task contains notes and description and completed (as a boolean)', async () => {
         const res = await request(server).get('/api/tasks')
         expect(res.body[0]).toMatchObject({
           description: 'Do foo',
@@ -159,7 +167,47 @@ describe('server.js', () => {
       })
     })
     describe('[POST] /api/tasks', () => {
-
+      it('can add a new task to the db', async () => {
+        await db('tasks').truncate()
+        await request(server).post('/api/tasks').send(taskA)
+        await request(server).post('/api/tasks').send(taskB)
+        await request(server).post('/api/tasks').send(taskC)
+        const tasks = await db('tasks')
+        expect(tasks).toHaveLength(3)
+        expect(tasks[0]).toMatchObject({ ...taskA, completed: 0, project_id: 1 })
+        expect(tasks[1]).toMatchObject({ ...taskB, completed: 0, project_id: 1 })
+        expect(tasks[2]).toMatchObject({ ...taskC, completed: 1, project_id: 2 })
+      })
+      it('responds with the newly created task with the completed as a boolean', async () => {
+        await db('tasks').truncate()
+        const res = await request(server).post('/api/tasks').send(taskA)
+        expect(res.body).toMatchObject({
+          description: 'Do foo',
+          notes: null,
+          completed: false,
+        })
+      })
+      it('rejects a task lacking a description with an error status code', async () => {
+        await db('tasks').truncate()
+        const res = await request(server).post('/api/tasks').send({ project_id: 1 })
+        const tasks = await db('tasks')
+        expect(res.status + '').toMatch(/4|5/)
+        expect(tasks).toHaveLength(0)
+      })
+      it('rejects a task lacking a project_id with an error status code', async () => {
+        await db('tasks').truncate()
+        const res = await request(server).post('/api/tasks').send({ description: 'Execute order 66' })
+        const tasks = await db('tasks')
+        expect(res.status + '').toMatch(/4|5/)
+        expect(tasks).toHaveLength(0)
+      })
+      it('rejects a task containing an invalid project_id with an error status code', async () => {
+        await db('tasks').truncate()
+        const res = await request(server).post('/api/tasks').send({ ...taskA, project_id: 66 })
+        const tasks = await db('tasks')
+        expect(res.status + '').toMatch(/4|5/)
+        expect(tasks).toHaveLength(0)
+      })
     })
   })
 })
