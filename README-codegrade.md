@@ -4,7 +4,7 @@
 
 ### Uploaded fixtures
 
-Here is the list of fixtures to upload for this Codegrade assignment. These files must be re-uploaded to Codegrade whenever we make changes to them:
+These files must be re-uploaded to Codegrade whenever we make changes to them:
 
 - `./project.test.js`
 - `./package.json`
