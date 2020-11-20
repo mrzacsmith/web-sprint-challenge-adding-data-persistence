@@ -1,5 +1,4 @@
-// 👉 You can run tests with `npm test`
-// DO NOT CHANGE THIS FILE!
+// 👉 You can run these tests in your terminal by running `npm test`
 const request = require('supertest')
 const server = require('./api/server')
 const db = require('./data/dbConfig')
