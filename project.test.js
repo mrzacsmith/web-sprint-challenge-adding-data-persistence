@@ -23,7 +23,10 @@ it('sanity check', () => {
 })
 
 describe('server.js', () => {
-  describe('-------------------- projects endpoints', () => {
+  // 👉 PROJECTS
+  // 👉 PROJECTS
+  // 👉 PROJECTS
+  describe('projects endpoints', () => {
     beforeEach(async () => {
       await db('projects').truncate()
       await db('projects').insert(projectA)
@@ -78,7 +81,10 @@ describe('server.js', () => {
     })
   })
 
-  describe('-------------------- resources endpoints', () => {
+  // 👉 RESOURCES
+  // 👉 RESOURCES
+  // 👉 RESOURCES
+  describe('resources endpoints', () => {
     beforeEach(async () => {
       await db('resources').truncate()
       await db('resources').insert(resourceA)
@@ -116,7 +122,10 @@ describe('server.js', () => {
     })
   })
 
-  describe('-------------------- tasks endpoints', () => {
+  // 👉 TASKS
+  // 👉 TASKS
+  // 👉 TASKS
+  describe('tasks endpoints', () => {
     beforeEach(async () => {
       await db('projects').truncate()
       await db('projects').insert(projectA)
