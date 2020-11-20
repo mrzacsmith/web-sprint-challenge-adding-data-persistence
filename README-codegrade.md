@@ -1,0 +1,32 @@
+# Codegrade
+
+## Setup
+
+### Uploaded fixtures
+
+Here is the list of fixtures to upload for this Codegrade assignment. These files must be re-uploaded to Codegrade whenever we make changes to them:
+
+- `./project.test.js`
+- `./package.json`
+- `./package.lock.json`
+- `./jest.config.js`
+- `./knexfile.js`
+- `./data/dbConfig.js`
+
+### Global setup script to run
+
+```bash
+cg-jest install
+```
+
+### Per-student setup script to run
+
+```bash
+mv $FIXTURES/* . && mv ./dbConfig.js ./data && npm install
+```
+
+### Program to test
+
+```bash
+NODE_ENV=testing cg-jest run -- project.test.js --runInBand
+```

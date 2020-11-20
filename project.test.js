@@ -17,6 +17,10 @@ const taskC = { description: 'Do baz', notes: 'Have fun!', completed: true, proj
 beforeAll(async () => {
   await db.migrate.latest()
 })
+afterAll(async(done) => {
+  await db.destroy()
+  done()
+})
 
 it('sanity check', () => {
   expect(true).not.toBe(false)
