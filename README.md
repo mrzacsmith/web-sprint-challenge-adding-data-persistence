@@ -6,7 +6,7 @@ This challenge allows you to practice the concepts and techniques learned over t
 
 This is an individual assessment. All work must be your own. Your challenge score is a measure of your ability to work independently using the material covered through this sprint. You need to demonstrate proficiency in the concepts and objectives introduced and practiced in preceding days.
 
-Do _not_ move or rename any of the files that are already included in this project.
+Review the folder structure of this project. _Do **not** move or rename any of the files that are already included in this project._
 
 _You have **three hours** to complete this challenge. Plan your time accordingly._
 
