@@ -8,7 +8,6 @@ Here is the list of fixtures to upload for this Codegrade assignment. These file
 
 - `./project.test.js`
 - `./package.json`
-- `./package.lock.json`
 - `./jest.config.js`
 - `./knexfile.js`
 - `./data/dbConfig.js`
