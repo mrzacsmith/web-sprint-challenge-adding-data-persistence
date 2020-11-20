@@ -47,7 +47,7 @@ describe('server.js', () => {
         expect(res.body[1]).toMatchObject(projectB)
       })
     })
-    describe('[POST] /api/projects', async () => {
+    describe('[POST] /api/projects', () => {
       it('can add a new project to the table', async () => {
         await db('projects').truncate()
         await request(server).post('/api/projects').send(projectA)
