@@ -26,5 +26,5 @@ mv $FIXTURES/* . && mv ./dbConfig.js ./data && npm install
 ### Program to test
 
 ```bash
-NODE_ENV=testing cg-jest run -- project.test.js --runInBand
+NODE_ENV=testing cg-jest run -- project.test.js --runInBand --forceExit
 ```
