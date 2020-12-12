@@ -8,8 +8,6 @@ These files must be re-uploaded to Codegrade whenever we make changes to them:
 
 - `project.test.js`
 - `jest.config.js`
-- `knexfile.js`
-- `data/dbConfig.js`
 
 ### Global setup script to run
 
@@ -20,7 +18,7 @@ cg-jest install
 ### Per-student setup script to run
 
 ```bash
-mv $FIXTURES/* . && mv ./dbConfig.js ./data && npm install
+mv $FIXTURES/* . && npm install
 ```
 
 ### Program to test
