@@ -7,22 +7,22 @@ module.exports = {
 
 function get() {
   return db("tasks as t")
-    .join("projects as p", "t.project_id", "p.id")
+    .join("projects as p", "t.project_id", "p.project_id")
     .select(
-      "t.description",
-      "t.notes",
-      "t.completed",
-      "p.name as project_name",
-      "p.description as project_description",
+      "t.task_description",
+      "t.task_notes",
+      "t.task_completed",
+      "p.project_name",
+      "p.project_description",
     )
     .then(task => task.map(task =>
-      ({ ...task, completed: task.completed ? true : false })
+      ({ ...task, task_completed: task.task_completed ? true : false })
     ));
 }
 
 function insert(task) {
   return db("tasks")
-    .insert(task, "id")
-    .then(([id]) => db("tasks").where({ id }))
-    .then(([task]) => ({ ...task, completed: task.completed ? true : false }));
+    .insert(task, "task_id")
+    .then(([task_id]) => db("tasks").where({ task_id }))
+    .then(([task]) => ({ ...task, task_completed: task.task_completed ? true : false }));
 }

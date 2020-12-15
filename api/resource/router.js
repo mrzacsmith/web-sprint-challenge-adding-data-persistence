@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const resource = req.body;
 
-  if (resource.name) {
+  if (resource.resource_name) {
     Resource.insert(resource)
       .then(inserted => {
         res.status(201).json(inserted);

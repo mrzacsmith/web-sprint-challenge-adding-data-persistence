@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const task = req.body;
 
-  if (task.description && task.project_id) {
+  if (task.task_description && task.project_id) {
     Task.insert(task)
       .then(inserted => {
         res.status(201).json(inserted);

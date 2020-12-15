@@ -8,13 +8,13 @@ module.exports = {
 function get() {
   return db("projects")
     .then(projects => projects.map(proj =>
-      ({ ...proj, completed: proj.completed ? true : false })
+      ({ ...proj, project_completed: proj.project_completed ? true : false })
     ));
 }
 
 function insert(project) {
   return db("projects")
-    .insert(project, "id")
-    .then(([id]) => db("projects").where({ id }))
-    .then(([proj]) => ({ ...proj, completed: proj.completed ? true : false }));
+    .insert(project, "project_id")
+    .then(([project_id]) => db("projects").where({ project_id }))
+    .then(([proj]) => ({ ...proj, project_completed: proj.project_completed ? true : false }));
 }

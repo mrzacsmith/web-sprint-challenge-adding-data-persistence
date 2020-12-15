@@ -1,3 +1,4 @@
+// do not make changes to this file (except to optionally add seeds)
 const sharedConfig = {
   client: 'sqlite3',
   useNullAsDefault: true,
@@ -9,7 +10,7 @@ module.exports = {
   development: {
     ...sharedConfig,
     connection: { filename: './data/lambda.db3' },
-    // optionally add seeds
+    seeds: { directory: './data/seeds' },
   },
   testing: {
     ...sharedConfig,

@@ -11,6 +11,6 @@ function get() {
 
 function insert(resource) {
   return db("resources")
-    .insert(resource, "id")
-    .then(([id]) => db("resources").where({ id }).first());
+    .insert(resource, "resource_id")
+    .then(([resource_id]) => db("resources").where({ resource_id }).first());
 }

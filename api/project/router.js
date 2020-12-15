@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const project = req.body;
 
-  if (project.name) {
+  if (project.project_name) {
     Project.insert(project)
       .then(inserted => {
         res.status(201).json(inserted);

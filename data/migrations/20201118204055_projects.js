@@ -1,12 +1,12 @@
 exports.up = function (knex) {
-  return knex.schema.createTable("projects", function (projects) {
-    projects.increments();
-    projects.string("name", 128).notNullable();
-    projects.text("description");
-    projects.boolean("completed").defaultTo(false);
+  return knex.schema.createTable('projects', function (projects) {
+    projects.increments('project_id');
+    projects.string('project_name', 128).notNullable();
+    projects.text('project_description');
+    projects.boolean('project_completed').notNullable().defaultTo(false);
   });
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTableIfExists("projects");
+  return knex.schema.dropTableIfExists('projects');
 };
