@@ -14,7 +14,7 @@ const db = require('./data/dbConfig')
 const server = require('./api/server')
 
 const projectA = { project_name: 'Web API', project_description: 'Build APIs' }
-const projectB = { project_name: 'Databases', project_description: 'Learn SQL', project_completed: true }
+const projectB = { project_name: 'Databases', project_description: 'Learn SQL', project_completed: 1 }
 const projectC = { project_name: 'Authentication' }
 
 const resourceA = { resource_name: 'keyboard' }
@@ -22,21 +22,15 @@ const resourceB = { resource_name: 'computer', resource_description: 'Windows PC
 
 const taskA = { task_description: 'Do foo', project_id: 1 }
 const taskB = { task_description: 'Do bar', task_notes: 'Use Postman!', project_id: 1 }
-const taskC = { task_description: 'Do baz', task_notes: 'Have fun!', task_completed: true, project_id: 2 }
+const taskC = { task_description: 'Do baz', task_notes: 'Have fun!', task_completed: 1, project_id: 2 }
 
-beforeAll(async () => {
-  await db.migrate.rollback()
-  await db.migrate.latest()
-})
 afterAll(async (done) => {
   await db.destroy()
   done()
 })
 beforeEach(async () => {
-  await db('project_resources').truncate()
-  await db('resources').truncate()
-  await db('tasks').truncate()
-  await db('projects').truncate()
+  await db.migrate.rollback()
+  await db.migrate.latest()
 })
 
 it('sanity check', () => {
@@ -49,18 +43,18 @@ describe('server.js', () => {
   // 👉 PROJECTS
   describe('projects endpoints', () => {
     describe('[GET] /api/projects', () => {
-      it('can get all projects that exist in the table', async () => {
+      beforeEach(async () => {
         await db('projects').insert(projectA)
-        await db('projects').insert({ ...projectB, project_completed: 1 })
+        await db('projects').insert(projectB)
+      })
+      it('can get all projects that exist in the table', async () => {
         const res = await request(server).get('/api/projects')
         expect(res.body).toHaveLength(2)
       }, 500)
       it('each project contains project_name, project_description and project_completed (as a boolean)', async () => {
-        await db('projects').insert(projectA)
-        await db('projects').insert({ ...projectB, project_completed: 1 })
         const res = await request(server).get('/api/projects')
         expect(res.body[0]).toMatchObject({ ...projectA, project_completed: false })
-        expect(res.body[1]).toMatchObject(projectB)
+        expect(res.body[1]).toMatchObject({ ...projectB, project_completed: true })
       }, 500)
     })
     describe('[POST] /api/projects', () => {
