@@ -131,7 +131,7 @@ describe('server.js', () => {
       await db('projects').insert(projectB)
       await db('tasks').insert(taskA)
       await db('tasks').insert(taskB)
-      await db('tasks').insert({ ...taskC, task_completed: 1 })
+      await db('tasks').insert(taskC)
     })
     describe('[GET] /api/tasks', () => {
       it('can get all tasks in the table', async () => {
@@ -180,9 +180,6 @@ describe('server.js', () => {
         await request(server).post('/api/tasks').send(taskC)
         const tasks = await db('tasks')
         expect(tasks).toHaveLength(3)
-        expect(tasks[0]).toMatchObject({ ...taskA, task_completed: 0, project_id: 1 })
-        expect(tasks[1]).toMatchObject({ ...taskB, task_completed: 0, project_id: 1 })
-        expect(tasks[2]).toMatchObject({ ...taskC, task_completed: 1, project_id: 2 })
       }, 500)
       it('responds with the newly created task with the task_completed as a boolean', async () => {
         await db('tasks').truncate()
