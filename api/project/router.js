@@ -1,19 +1,15 @@
 const router = require('express').Router();
 const Project = require('./model');
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   Project.get()
     .then(projects => {
       res.status(200).json(projects);
     })
-    .catch(error => {
-      res.status(500).json({
-        message: error.message,
-      });
-    });
+    .catch(next);
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   const project = req.body;
 
   if (project.project_name) {
@@ -21,15 +17,9 @@ router.post('/', (req, res) => {
       .then(inserted => {
         res.status(201).json(inserted);
       })
-      .catch(error => {
-        res.status(500).json({
-          message: error.message,
-        });
-      });
+      .catch(next);
   } else {
-    res.status(400).json({
-      message: 'Please provide a name for the project',
-    });
+    next({ status: 400, message: 'Please provide a name for the project' })
   }
 });
 

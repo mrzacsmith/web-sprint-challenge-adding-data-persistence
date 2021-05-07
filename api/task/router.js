@@ -1,19 +1,15 @@
 const router = require('express').Router();
 const Task = require('./model');
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   Task.get()
     .then(tasks => {
       res.status(200).json(tasks);
     })
-    .catch(error => {
-      res.status(500).json({
-        message: error.message,
-      });
-    });
+    .catch(next);
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   const task = req.body;
 
   if (task.task_description && task.project_id) {
@@ -21,15 +17,9 @@ router.post('/', (req, res) => {
       .then(inserted => {
         res.status(201).json(inserted);
       })
-      .catch(error => {
-        res.status(500).json({
-          message: error.message,
-        });
-      });
+      .catch(next);
   } else {
-    res.status(400).json({
-      message: 'Please provide a description and a project id for the task',
-    });
+    next({ status: 400, message: 'Please provide a description and a project id for the task'})
   }
 });
 

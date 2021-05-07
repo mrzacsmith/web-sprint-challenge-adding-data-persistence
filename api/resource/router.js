@@ -1,19 +1,15 @@
 const router = require('express').Router();
 const Resource = require('./model');
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   Resource.get()
     .then(resource => {
       res.status(200).json(resource);
     })
-    .catch(error => {
-      res.status(500).json({
-        message: error.message,
-      });
-    });
+    .catch(next);
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   const resource = req.body;
 
   if (resource.resource_name) {
@@ -21,15 +17,9 @@ router.post('/', (req, res) => {
       .then(inserted => {
         res.status(201).json(inserted);
       })
-      .catch(error => {
-        res.status(500).json({
-          message: error.message,
-        });
-      });
+      .catch(next);
   } else {
-    res.status(400).json({
-      message: 'Please provide a name for the resource',
-    });
+    next({ status: 400, message: 'Please provide a name for the resource' })
   }
 });
 

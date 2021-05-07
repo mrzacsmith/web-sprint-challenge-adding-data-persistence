@@ -7,7 +7,8 @@ IMPORTANT NOTES 🔥
 2- Tests use their own database connection (see `knexfile.js` and `data/dbConfig.js`)
 3- Tests will fail to run until server.js and migration(s) are sufficiently fleshed out
 4- Opening the `test.db3` with SQLite Studio might prevent tests from working
-5- Manual testing with Postman or HTTPie is still necessary
+5- If the tests crash due to a "locked migration table", stop tests and delete `test.db3` file
+6- Manual testing with Postman or HTTPie is still necessary
 */
 const request = require('supertest')
 const db = require('./data/dbConfig')
