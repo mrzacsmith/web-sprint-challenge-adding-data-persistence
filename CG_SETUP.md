@@ -2,11 +2,11 @@
 
 This is the solution repo for [Adding Data Persistence](https://github.com/LambdaSchool/web-sprint-challenge-adding-data-persistence) Sprint Challenge Submission.
 
-If you make changes to this project, please go through this checklist:
+Whenever setting up a Codegrade assignment or importing settings from another assignment:
 
-1. Make sure that all tests are passing in your local.
-2. Upload the updated fixtures to your template Codegrade assignment.
-3. Notify the changes to fellow staff in the appropriate channels.
+1. Make sure that rubrics, fixtures and scripts match the ones in **this repo**.
+2. Re-upload to Codegrade any items that don't match exactly the ones in this repo.
+3. Run tests locally, and push an empty commit to Codegrade to verify that this repo passes all tests.
 
 ## Fixtures
 
