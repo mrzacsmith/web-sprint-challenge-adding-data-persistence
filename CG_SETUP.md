@@ -33,7 +33,7 @@ NODE_ENV=testing cg-jest run -- codegrade_mvp.test.js --runInBand --forceExit
 
 ## Rubric
 
-### Auto Tests (9 points)
+### Auto Tests (8 points)
 
 >Automatic tests are run against your branch, to check how closely your work matches specification.
 There is a copy of the tests inside the `codegrade_mvp.test.js` file, at the root of the project.
@@ -43,7 +43,7 @@ Do not rely on the automatic tests alone to check your progress!
 
 ### Intro to Relational Databases
 
-_Use Knex to perform CRUD operations on a single tables._
+_Use Knex to perform CRUD operations on a single table._
 
 | Grade         | Points | Description |
 |---------------|:------:|-------------|
@@ -59,7 +59,7 @@ _Write migrations to generate database schemas._
 |---------------|:------:|-------------|
 | Not Yet       | 0      | Migrations do not exist or the data types and/or constraints used do not reflect the README requirements. |
 | Met           | 1      | Migrations reflect the model as outlined in the README, and include a down function to undo the changes. |
-| Flying Colors | 2      | NPM scripts exist inside `package.json` that can be used to run and roll back migrations. |
+| Flying Colors | 2      | NPM scripts exist inside `package.json` that can be used to run and roll back the migrations. |
 
 ### Multi-Table Queries
 
@@ -76,8 +76,8 @@ _Design normalized data model according to client requirements._
 
 | Grade         | Points | Description |
 |---------------|:------:|-------------|
-| Not Yet       | 0      | Migrations do not create the connecting table `project_resources` or it does it incorrectly. |
-| Met           | 1      | Connecting table `project_resources` exists and has a primary key made of one or more columns, and foreign keys. |
+| Not Yet       | 0      | Migrations do not create the connecting table `project_resources` or do it incorrectly. |
+| Met           | 1      | Connecting table `project_resources` exists and has a primary key and proper foreign keys to `projects` and `resources`. |
 
 ### Code Quality
 
