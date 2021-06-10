@@ -43,7 +43,7 @@ Do not rely on the automatic tests alone to check your progress!
 
 ### Intro to Relational Databases
 
-_Use Knex to perform CRUD operations on a single table._
+>Use Knex to perform CRUD operations on a single table.
 
 | Grade         | Points | Description |
 |---------------|:------:|-------------|
@@ -53,7 +53,7 @@ _Use Knex to perform CRUD operations on a single table._
 
 ### Database Schema Design
 
-_Write migrations to generate database schemas._
+>Write migrations to generate database schemas.
 
 | Grade         | Points | Description |
 |---------------|:------:|-------------|
@@ -63,7 +63,7 @@ _Write migrations to generate database schemas._
 
 ### Multi-Table Queries
 
-_Use Knex to work with data from multiple tables._
+>Use Knex to work with data from multiple tables.
 
 | Grade         | Points | Description |
 |---------------|:------:|-------------|
@@ -72,7 +72,7 @@ _Use Knex to work with data from multiple tables._
 
 ### Data Modeling
 
-_Design normalized data model according to client requirements._
+>Design normalized data model according to client requirements.
 
 | Grade         | Points | Description |
 |---------------|:------:|-------------|
@@ -81,7 +81,7 @@ _Design normalized data model according to client requirements._
 
 ### Code Quality
 
-_Write code that is straightforward and easy to follow._
+>Write code that is straightforward and easy to follow.
 
 | Grade         | Points | Description |
 |---------------|:------:|-------------|
