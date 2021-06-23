@@ -1,7 +1,6 @@
 {
   "name": "adding-data-persistence-solution",
   "version": "0.0.1",
-  "description": "Data Persistence Challenge",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
