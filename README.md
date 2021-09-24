@@ -97,10 +97,12 @@ Build an API inside the `api` folder with endpoints for:
 - You are welcome to create additional files for middlewares etc, but **do not move or rename existing files** or folders.
 - Do not make changes to your `package.json` except to add **additional** dependencies and scripts. Do not update existing packages.
 - In your solution, it is essential that you follow best practices and produce clean and professional results.
+- Schedule time to review, refine, and assess your work and perform basic professional polishing including spell-checking and grammar-checking on your work.
+- It is better to submit a challenge that meets MVP than one that attempts too much and does not.
 
 ## Submission format
 
-- [ ] Submit via Codegrade by pushing commits to your `main` branch on Github.
+- [ ] Submit via Codegrade by pushing commits to your `<firstName-lastName>` branch on Github.
 - [ ] Check Codegrade before the deadline to compare its results against your local tests.
 - [ ] Check Codegrade on the days following the Sprint Challenge for reviewer feedback.
 - [ ] New commits will be evaluated by Codegrade if pushed _before_ the sprint challenge deadline.
