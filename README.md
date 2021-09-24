@@ -43,7 +43,7 @@ Build the migration(s) in Knex inside the `data/migrations` folder using appropr
 
 - [ ] A **project** is what needs to be done and is stored in a `projects` table with the following columns:
 
-  - [ ] `project_id` - primary key
+  - [x] `project_id` - primary key
   - [ ] `project_name` - required
   - [ ] `project_description` - optional
   - [ ] `project_completed` - the database defaults it to `false` (integer 0) if not provided
